@@ -2,6 +2,7 @@ export function About() {
   return (
     <section className="section" id="about">
       <div className="container">
+        <p className="section-label">About</p>
         <div className="about-grid">
           <div className="about-photo-frame">
             <img

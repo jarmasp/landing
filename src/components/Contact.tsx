@@ -2,6 +2,7 @@ export function Contact() {
   return (
     <section className="section" id="contact">
       <div className="container">
+        <p className="section-label">Contact</p>
         <div className="contact-inner">
           <p className="contact-headline">
             Open to <strong>senior backend</strong> roles and interesting{' '}

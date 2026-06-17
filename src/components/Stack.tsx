@@ -22,6 +22,7 @@ export function Stack() {
   return (
     <section className="section" id="stack">
       <div className="container">
+        <p className="section-label">Stack</p>
         <div className="stack-tiers">
           {TIERS.map(({ label, items }) => (
             <div key={label} className="stack-tier">

@@ -1,28 +1,27 @@
 /* ── Variables ─────────────────────────────────────────────────── */
 :root {
   /* Palette — Guri Dam / sala de máquinas concrete */
-  --ink:        #0D0B09;
-  --depth:      #120F0C;
-  --concrete:   #1A1714;
-  --steel:      #26211D;
-  --muted:      #38302C;
-  --dim:        #5C504A;
-  --ghost:      #8A7E78;
-  --fog:        #AFA49E;
+  --ink:        #0F0D0B;
+  --depth:      #140F0C;
+  --concrete:   #1C1714;
+  --steel:      #28221E;
+  --muted:      #3A3028;
+  --dim:        #5E504A;
+  --ghost:      #8C8078;
+  --fog:        #B0A49E;
   --paper:      #DDD5CB;
   --light:      #EDE7DF;
-
   --copper:     #BE7424;
 
-  /* Cruz-Diez / Guri chromatic cycle — sala de máquinas wall palette */
-  --cd-black:   #0D0B09;
-  --cd-crimson: #7A1020;
-  --cd-red:     #B8182C;
-  --cd-vermil:  #D44020;
-  --cd-orange:  #DE7010;
-  --cd-olive:   #2E4818;
-  --cd-navy:    #1A3858;
-  --cd-mauve:   #5A2540;
+  /* Cruz-Diez / Guri Chromosaturation palette — sala de máquinas */
+  --cd-black:   #0C0A08;
+  --cd-crimson: #9A0E1E;
+  --cd-red:     #C82020;
+  --cd-vermil:  #D84E10;
+  --cd-orange:  #DC7010;
+  --cd-amber:   #C89A10;   /* gold from the murals — replaces --cd-olive */
+  --cd-blue:    #1A4AAA;   /* cobalt — replaces --cd-navy */
+  --cd-mauve:   #5A1A50;
 
   /* Typography */
   --font-display: 'Barlow', system-ui, sans-serif;
@@ -60,7 +59,7 @@ body {
 img { display: block; max-width: 100%; }
 a   { color: inherit; text-decoration: none; }
 
-/* ── Kinetic stripes — Cruz-Diez chromatic panel ───────────────── */
+/* ── Kinetic stripes — Cruz-Diez Chromosaturation panel ─────────── */
 .kinetic {
   width: 100%;
   height: 100%;
@@ -68,34 +67,23 @@ a   { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
+/* Colors driven by JS (inline backgroundColor). CSS handles the wave transition. */
 .kinetic-stripe {
   flex: 1;
-  animation: chromashift 8s linear infinite;
-  animation-delay: calc(var(--i) * -0.333s);
-}
-
-@keyframes chromashift {
-  0%    { background-color: var(--cd-black);   }
-  12%   { background-color: var(--cd-crimson); }
-  25%   { background-color: var(--cd-red);     }
-  38%   { background-color: var(--cd-vermil);  }
-  52%   { background-color: var(--cd-orange);  }
-  62%   { background-color: var(--cd-olive);   }
-  72%   { background-color: var(--cd-navy);    }
-  87%   { background-color: var(--cd-mauve);   }
-  100%  { background-color: var(--cd-black);   }
+  transition: background-color 0.7s ease-in-out;
+  transition-delay: calc(var(--i) * 35ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
   .kinetic-stripe {
-    animation: none;
-    background-color: var(--cd-olive);
+    transition: none;
+    transition-delay: 0ms;
   }
 }
 
 /* ── Chromatic divider — Cruz-Diez rule ────────────────────────── */
 .guri-rule {
-  height: 5px;
+  height: 6px;
   flex-shrink: 0;
   background: linear-gradient(to right,
     var(--cd-black)   0%,
@@ -103,11 +91,33 @@ a   { color: inherit; text-decoration: none; }
     var(--cd-red)     18%,
     var(--cd-vermil)  30%,
     var(--cd-orange)  42%,
-    var(--cd-olive)   56%,
-    var(--cd-navy)    70%,
+    var(--cd-amber)   56%,
+    var(--cd-blue)    70%,
     var(--cd-mauve)   84%,
     var(--cd-black)   100%
   );
+}
+
+/* ── Section label ─────────────────────────────────────────────── */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 2.5rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cd-orange), var(--cd-amber));
+  flex-shrink: 0;
 }
 
 /* ── Navigation ────────────────────────────────────────────────── */
@@ -120,9 +130,29 @@ a   { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: space-between;
   padding: 0 var(--gap);
-  background: rgba(13, 11, 9, 0.88);
+  background: rgba(15, 13, 11, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+}
+
+/* Chromatic bottom border on nav */
+.nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right,
+    var(--cd-black)   0%,
+    var(--cd-crimson) 12%,
+    var(--cd-red)     25%,
+    var(--cd-orange)  40%,
+    var(--cd-amber)   55%,
+    var(--cd-blue)    72%,
+    var(--cd-mauve)   88%,
+    var(--cd-black)   100%
+  );
 }
 
 .nav-logo {
@@ -247,6 +277,7 @@ a   { color: inherit; text-decoration: none; }
   position: absolute;
   inset: 0;
   border: var(--border);
+  box-shadow: inset 0 -3px 0 var(--cd-orange);
   pointer-events: none;
 }
 
@@ -294,8 +325,8 @@ a   { color: inherit; text-decoration: none; }
 }
 
 .btn-outline:hover {
-  border-color: rgba(237, 231, 223, 0.28);
-  color: var(--paper);
+  border-color: rgba(220, 112, 16, 0.45);
+  color: var(--cd-amber);
 }
 
 /* ── Work ──────────────────────────────────────────────────────── */
@@ -390,6 +421,12 @@ a   { color: inherit; text-decoration: none; }
   color: var(--dim);
   border: 1px solid var(--steel);
   padding: 0.2rem 0.55rem;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.tag:hover {
+  color: var(--fog);
+  border-color: var(--muted);
 }
 
 /* ── Projects ──────────────────────────────────────────────────── */
@@ -415,6 +452,7 @@ a   { color: inherit; text-decoration: none; }
 
 .project-void {
   grid-column: span 2;
+  border-top: 2px solid var(--cd-orange);
 }
 
 .project-header {
@@ -441,7 +479,7 @@ a   { color: inherit; text-decoration: none; }
 }
 
 .project-card:hover .project-arrow {
-  color: var(--ghost);
+  color: var(--cd-amber);
   transform: translate(2px, -2px);
 }
 

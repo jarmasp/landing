@@ -15,6 +15,7 @@ export function Projects() {
   return (
     <section className="section" id="projects">
       <div className="container">
+        <p className="section-label">Projects</p>
         <div className="projects-mosaic">
           <a
             href="https://github.com/jarmasp"
