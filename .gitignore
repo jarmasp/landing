@@ -6,6 +6,6 @@ dist/
 # raw content — not part of the site source
 jose-armas-cv-en.md
 jose-armas-cv-es.md
-me/
-taste/
-me.jpg
+/me/
+/taste/
+/me.jpg
