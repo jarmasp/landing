@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const COLORS = [
   '#0C0A08', // deep black
@@ -12,12 +12,19 @@ const COLORS = [
 ]
 
 const COUNT = 16
+const STAGGER_MS = 35
+const INTERVAL_MS = 1400
 
 export function KineticStripes() {
   const [phase, setPhase] = useState(0)
+  const reducedMotion = useRef(
+    typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
 
   useEffect(() => {
-    const id = setInterval(() => setPhase(p => (p + 1) % COLORS.length), 1400)
+    if (reducedMotion.current) return
+    const id = setInterval(() => setPhase(p => (p + 1) % COLORS.length), INTERVAL_MS)
     return () => clearInterval(id)
   }, [])
 
@@ -28,9 +35,9 @@ export function KineticStripes() {
           key={i}
           className="kinetic-stripe"
           style={{
-            '--i': i,
+            transitionDelay: reducedMotion.current ? '0ms' : `${i * STAGGER_MS}ms`,
             backgroundColor: COLORS[(i + phase) % COLORS.length],
-          } as CSSProperties}
+          }}
         />
       ))}
     </div>

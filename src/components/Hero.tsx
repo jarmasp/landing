@@ -9,10 +9,10 @@ export function Hero() {
         </h1>
         <p className="hero-role">Backend Engineer</p>
         <p className="hero-location">Caracas, Venezuela · 2026</p>
-        <span className="hero-cta">
+        <a href="#about" className="hero-cta" aria-label="Jump to About">
           <span className="hero-cta-line" />
-          Scroll
-        </span>
+          ↓
+        </a>
       </div>
       <KineticStripes />
     </section>

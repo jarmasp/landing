@@ -67,18 +67,14 @@ a   { color: inherit; text-decoration: none; }
   overflow: hidden;
 }
 
-/* Colors driven by JS (inline backgroundColor). CSS handles the wave transition. */
+/* Colors and stagger delay driven by JS via inline style. */
 .kinetic-stripe {
   flex: 1;
   transition: background-color 0.7s ease-in-out;
-  transition-delay: calc(var(--i) * 35ms);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kinetic-stripe {
-    transition: none;
-    transition-delay: 0ms;
-  }
+  .kinetic-stripe { transition: none; }
 }
 
 /* ── Chromatic divider — Cruz-Diez rule ────────────────────────── */
@@ -104,10 +100,10 @@ a   { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.68rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--ghost);
   margin-bottom: 2.5rem;
 }
 
@@ -173,7 +169,7 @@ a   { color: inherit; text-decoration: none; }
   font-size: 0.68rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--ghost);
   transition: color 0.15s;
 }
 
@@ -202,6 +198,7 @@ a   { color: inherit; text-decoration: none; }
   line-height: 0.88;
   color: var(--light);
   margin-bottom: 1.5rem;
+  text-wrap: balance;
 }
 
 .hero-role {
@@ -227,10 +224,13 @@ a   { color: inherit; text-decoration: none; }
   margin-top: 3rem;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: var(--muted);
+  color: var(--ghost);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  transition: color 0.15s;
 }
+
+.hero-cta:hover { color: var(--paper); }
 
 .hero-cta-line {
   display: block;
@@ -363,7 +363,7 @@ a   { color: inherit; text-decoration: none; }
   font-family: var(--font-mono);
   font-size: 0.67rem;
   letter-spacing: 0.06em;
-  color: var(--dim);
+  color: var(--ghost);
   white-space: nowrap;
 }
 
@@ -403,7 +403,7 @@ a   { color: inherit; text-decoration: none; }
 .work-bullets li::before {
   content: '—';
   font-family: var(--font-mono);
-  color: var(--dim);
+  color: var(--ghost);
   line-height: 1.6;
 }
 
@@ -550,7 +550,10 @@ a   { color: inherit; text-decoration: none; }
   font-family: var(--font-mono);
   font-size: 0.7rem;
   color: var(--fog);
+  transition: color 0.12s;
 }
+
+a.void-module-name:hover { color: var(--cd-amber); }
 
 .void-module-desc {
   font-size: 0.77rem;
@@ -600,7 +603,7 @@ a   { color: inherit; text-decoration: none; }
   font-size: 0.62rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--dim);
+  color: var(--ghost);
   min-width: 52px;
 }
 
@@ -628,8 +631,26 @@ a   { color: inherit; text-decoration: none; }
   font-family: var(--font-mono);
   font-size: 0.63rem;
   letter-spacing: 0.07em;
-  color: var(--muted);
+  color: var(--ghost);
 }
+
+/* ── Mobile navigation ─────────────────────────────────────────── */
+.nav-mobile {
+  display: none;
+}
+
+.nav-mobile-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ghost);
+  padding: 0.5rem 0.75rem;
+  transition: color 0.15s;
+}
+
+.nav-mobile-link:hover,
+.nav-mobile-link:active { color: var(--paper); }
 
 /* ── Responsive ────────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -639,11 +660,55 @@ a   { color: inherit; text-decoration: none; }
 @media (max-width: 720px) {
   .nav-links { display: none; }
 
-  .hero {
-    grid-template-columns: 1fr;
+  .nav-mobile {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    height: 52px;
+    align-items: center;
+    justify-content: space-around;
+    background: rgba(15, 13, 11, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
-  .kinetic { display: none; }
+  .nav-mobile::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right,
+      var(--cd-black)   0%,
+      var(--cd-crimson) 12%,
+      var(--cd-red)     25%,
+      var(--cd-orange)  40%,
+      var(--cd-amber)   55%,
+      var(--cd-blue)    72%,
+      var(--cd-mauve)   88%,
+      var(--cd-black)   100%
+    );
+  }
+
+  body { padding-bottom: 52px; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 72px;
+  }
+
+  /* Kinetic becomes a horizontal accent band at the bottom of the hero */
+  .kinetic {
+    flex-direction: row;
+    height: 72px;
+    width: 100%;
+  }
+
+  .kinetic-stripe { min-height: 0; }
 
   .about-grid {
     grid-template-columns: 1fr;
