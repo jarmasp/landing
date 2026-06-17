@@ -12,6 +12,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <div className="guri-rule" />
         <About />
         <Work />
         <Projects />

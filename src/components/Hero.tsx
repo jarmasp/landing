@@ -3,7 +3,6 @@ import { KineticStripes } from './KineticStripes'
 export function Hero() {
   return (
     <section className="hero">
-      <KineticStripes />
       <div className="hero-body">
         <h1 className="hero-name">
           JOSÉ<br />ARMAS
@@ -15,6 +14,7 @@ export function Hero() {
           Scroll
         </span>
       </div>
+      <KineticStripes />
     </section>
   )
 }
