@@ -1,45 +1,36 @@
-interface StackItem { name: string; cat: string }
+interface Tier {
+  label: string
+  items: string[]
+}
 
-const STACK: StackItem[] = [
-  { name: 'TypeScript',      cat: 'Language'     },
-  { name: 'Node.js',         cat: 'Runtime'      },
-  { name: 'NestJS',          cat: 'Framework'    },
-  { name: 'Express.js',      cat: 'Framework'    },
-  { name: 'PostgreSQL',      cat: 'Database'     },
-  { name: 'Redis',           cat: 'Cache'        },
-  { name: 'MongoDB',         cat: 'Database'     },
-  { name: 'TypeORM',         cat: 'ORM'          },
-  { name: 'gRPC',            cat: 'Protocol'     },
-  { name: 'REST',            cat: 'Protocol'     },
-  { name: 'RabbitMQ',        cat: 'Messaging'    },
-  { name: 'Docker',          cat: 'Infra'        },
-  { name: 'GCP',             cat: 'Cloud'        },
-  { name: 'Firebase',        cat: 'Cloud'        },
-  { name: 'Apigee',          cat: 'API Gateway'  },
-  { name: 'LaunchDarkly',    cat: 'Feature Flags'},
-  { name: 'Jest',            cat: 'Testing'      },
-  { name: 'Testcontainers',  cat: 'Testing'      },
-  { name: 'Biome',           cat: 'Tooling'      },
-  { name: 'OpenTelemetry',   cat: 'Observability'},
-  { name: 'Grafana',         cat: 'Observability'},
-  { name: 'Prometheus',      cat: 'Observability'},
-  { name: 'Go',              cat: 'Language'     },
-  { name: 'Solidity',        cat: 'Language'     },
+const TIERS: Tier[] = [
+  {
+    label: 'Core',
+    items: ['NestJS', 'TypeScript', 'Node.js', 'PostgreSQL', 'Redis', 'gRPC', 'Docker', 'GCP'],
+  },
+  {
+    label: 'Working',
+    items: ['TypeORM', 'RabbitMQ', 'Firebase', 'Apigee', 'LaunchDarkly', 'Jest', 'Testcontainers', 'Pino', 'OpenTelemetry'],
+  },
+  {
+    label: 'Exploring',
+    items: ['Go', 'Solidity', 'secp256k1', 'Grafana', 'Prometheus', 'Loki'],
+  },
 ]
 
 export function Stack() {
   return (
     <section className="section" id="stack">
       <div className="container">
-        <div className="section-header">
-          <span className="section-label">05 — Stack</span>
-          <div className="section-rule" />
-        </div>
-        <div className="stack-grid">
-          {STACK.map((s) => (
-            <div key={s.name} className="stack-cell">
-              <span className="stack-name">{s.name}</span>
-              <span className="stack-cat">{s.cat}</span>
+        <div className="stack-tiers">
+          {TIERS.map(({ label, items }) => (
+            <div key={label} className="stack-tier">
+              <span className="stack-tier-label">{label}</span>
+              <div className="stack-tier-items">
+                {items.map((item) => (
+                  <span key={item} className="tag">{item}</span>
+                ))}
+              </div>
             </div>
           ))}
         </div>

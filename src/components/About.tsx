@@ -2,10 +2,6 @@ export function About() {
   return (
     <section className="section" id="about">
       <div className="container">
-        <div className="section-header">
-          <span className="section-label">02 — About</span>
-          <div className="section-rule" />
-        </div>
         <div className="about-grid">
           <div className="about-photo-frame">
             <img

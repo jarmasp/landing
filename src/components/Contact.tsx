@@ -2,10 +2,6 @@ export function Contact() {
   return (
     <section className="section" id="contact">
       <div className="container">
-        <div className="section-header">
-          <span className="section-label">06 — Contact</span>
-          <div className="section-rule" />
-        </div>
         <div className="contact-inner">
           <p className="contact-headline">
             Open to <strong>senior backend</strong> roles and interesting{' '}

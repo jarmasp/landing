@@ -5,7 +5,6 @@ export function Hero() {
     <section className="hero">
       <KineticStripes />
       <div className="hero-body">
-        <span className="hero-eyebrow">01 — Backend Engineer</span>
         <h1 className="hero-name">
           JOSÉ<br />ARMAS
         </h1>

@@ -41,10 +41,6 @@ export function Work() {
   return (
     <section className="section" id="work">
       <div className="container">
-        <div className="section-header">
-          <span className="section-label">03 — Experience</span>
-          <div className="section-rule" />
-        </div>
         {WORK.map((job) => (
           <div key={job.company} className="work-entry">
             <div className="work-top">
