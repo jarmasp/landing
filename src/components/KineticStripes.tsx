@@ -7,7 +7,7 @@ const COLORS = [
   '#D84E10', // vermilion
   '#DC7010', // orange
   '#C89A10', // amber / gold — from the Chromosaturation murals
-  '#1A4AAA', // cobalt blue — Cruz-Diez blue
+  '#3A0810', // dark burgundy
   '#5A1A50', // dark mauve
 ]
 

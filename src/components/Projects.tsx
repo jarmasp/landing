@@ -57,6 +57,28 @@ export function Projects() {
           </a>
 
           <a
+            href="https://github.com/jarmasp/growth-os"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card"
+          >
+            <div className="project-header">
+              <span className="project-name">growth-os</span>
+              <span className="project-arrow">↗</span>
+            </div>
+            <p className="project-desc">
+              Personal learning OS — structured knowledge capture, weekly reviews, and concept
+              deep-dives with an agent harness for self-directed growth.
+              Vector database integration in progress.
+            </p>
+            <div className="tags">
+              {['TypeScript', 'AI Agents', 'Obsidian'].map((t) => (
+                <span key={t} className="tag">{t}</span>
+              ))}
+            </div>
+          </a>
+
+          <a
             href="https://github.com/jarmasp/mobility-inc"
             target="_blank"
             rel="noopener noreferrer"

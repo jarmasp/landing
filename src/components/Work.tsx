@@ -15,14 +15,15 @@ const WORK: Job[] = [
     context:
       "Venezuela's BNPL fintech — Buy Now, Pay Later infrastructure across multiple merchant verticals, running at production scale on GCP.",
     bullets: [
-      'Designed the employee session security layer across 3 production microservices: 7-day inactivity expiration, Firebase refresh-token revocation, and decorator-driven re-auth recovery paths — closing a token-revocation gap at merchant scale.',
-      'Shipped the employee management vertical slice end-to-end: gRPC service contracts, identity-auth SDK integration, Apigee proxy configuration across dev/staging/prod, and a Redis-backed reusable @RateLimit decorator replacing per-endpoint in-memory interceptors.',
+      'Closed a token-revocation gap in employee auth across 2 production services — 7-day inactivity expiration, Firebase refresh-token revocation, and decorator-driven re-auth recovery paths on top of the team\'s shared auth infrastructure.',
+      'Delivered the employee CRUD vertical slice end-to-end: gRPC service contracts, Apigee proxy configuration across dev/staging/prod, and a Redis-backed reusable @RateLimit decorator replacing per-endpoint in-memory interceptors.',
+      'Migrated business logic out of the monolith into dedicated microservices, wiring inter-service communication over gRPC through Apigee.',
       'Overhauled ally-experience-api testing infrastructure: Jest 30 migration, Testcontainers integration harness, pre-commit lint/unit hooks, and PR-blocking CI workflows — raising the confidence floor across the team.',
-      'Integrated Pino structured logging and GCP Secret Manager lazy-init into the NestJS observability bootstrap; wired into the shared @cashea-bnpl/observability package.',
-      'Delivered zero-down-payment confirmation behind a LaunchDarkly feature flag, coordinating rollout across the payment and order domains.',
+      'Shipped multiple LaunchDarkly-gated rollouts across payment, order, and auth domains — including zero-down-payment confirmation and forced user password rotation.',
       'Built Retool-facing endpoints for real-time financial operations consumed by internal audit and collections teams.',
+      'Maintained GitHub Actions pipelines with unit and integration test stages; supervised production deploys via platform metrics.',
     ],
-    tags: ['TypeScript', 'NestJS', 'gRPC', 'Redis', 'PostgreSQL', 'Firebase', 'GCP', 'LaunchDarkly', 'Testcontainers', 'Apigee', 'Pino'],
+    tags: ['TypeScript', 'NestJS', 'gRPC', 'Redis', 'PostgreSQL', 'Firebase', 'GCP', 'LaunchDarkly', 'Testcontainers', 'Apigee'],
   },
   {
     company: 'Applaudo',
